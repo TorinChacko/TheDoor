@@ -52,7 +52,7 @@
   <li><b>Sprites</b> - Folder for sprites</li>
 </ul>
 
-
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- GETTING STARTED -->
 <h2 id="getting-started"> :book: Getting Started</h2>
 
@@ -63,7 +63,7 @@
 
 <p> Itch.io link tbd</p>
 
-
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <!-- CREDITS -->
 <h2 id="credits"> :scroll: Credits</h2>
 
