@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraFollow2D : MonoBehaviour
 {
     public Transform target;
-    public float smoothSpeed = 0.3f;
+    public float smoothSpeed = 0.5f;
     public Vector2 offset;
     public float lookAheadFactor = 1;
     public float lookAheadReturnSpeed = 0.3f;
