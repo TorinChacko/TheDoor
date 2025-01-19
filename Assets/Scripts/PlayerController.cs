@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 currentSlot = i;
-                inventoryUI.UpdateUI();
+                if (inventoryUI != null)
+                {
+                    inventoryUI.UpdateUI();
+                }
             }
         }
     }
