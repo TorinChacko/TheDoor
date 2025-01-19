@@ -16,8 +16,6 @@ public class ItemSlotUI : MonoBehaviour
         if (button == null)
             button = GetComponent<Button>();
 
-        // Add click listener
-        button.onClick.AddListener(OnSlotClicked);
     }
 
     public void UpdateSlot(Item item)

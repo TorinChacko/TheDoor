@@ -3,6 +3,22 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
+    public List<string> keys = new List<string>();
+
+    public bool HasKey(string keyName)
+    {
+        return keys.Contains(keyName);
+    }
+
+    public void AddKey(string keyName)
+    {
+        if (!keys.Contains(keyName))
+        {
+            keys.Add(keyName);
+            Debug.Log($"Added {keyName} to inventory.");
+        }
+    }
+
     public int inventorySize = 9;
     public List<ItemSlot> items = new List<ItemSlot>();
 
