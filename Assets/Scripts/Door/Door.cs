@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public int level = 1;
+    public int level = 2;
     public int health;
     public string requiredKeyName = "DoorKey";
 
@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
 
     private void SetHealthBasedOnLevel()
     {
-        health = level * 50; // Adjust this formula as needed
+        // Adjust this formula as needed
     }
 
     public void TakeDamage(int damage)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Key : MonoBehaviour
 {
     public string keyName = "DoorKey";
-    public int damage = 50000;
+    public int damage = 1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
