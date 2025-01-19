@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  isStackable: 0
-  maxStackSize: 1
+  dropPrefab: {fileID: 1337390819160793166, guid: bab395bcfa876c44b9162eefa78dc631, type: 3}
