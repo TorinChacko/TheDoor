@@ -1,9 +1,10 @@
 using UnityEngine;
+
 public class Door : MonoBehaviour
 {
+    public int level = 1;
     public int health;
-    public int level;
-    public string requiredKeyName = "Key";
+    public string requiredKeyName = "DoorKey";
 
     private void Start()
     {
@@ -12,12 +13,14 @@ public class Door : MonoBehaviour
 
     private void SetHealthBasedOnLevel()
     {
-        health = level * 50; // Adjust the multiplier as needed
+        health = level * 50; // Adjust this formula as needed
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log($"Door took {damage} damage. Remaining health: {health}");
+
         if (health <= 0)
         {
             OpenDoor();
@@ -26,7 +29,7 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     {
-        // Implement door opening logic here
+        Debug.Log("Door opened!");
         gameObject.SetActive(false); // For simplicity, just disable the door
     }
 }
