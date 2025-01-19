@@ -68,4 +68,4 @@
 <h2 id="credits"> :scroll: Credits</h2>
 
 Group 4 : ACM Game Jam
-Names: Torin Chacko, YOUT NAME HERE
+Names: Torin Chacko, Karen Troung et al.
