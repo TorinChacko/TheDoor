@@ -3,36 +3,29 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float jumpForce = 30f;
+    [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float groundCheckRadius = 0.1f;
-    [SerializeField] private float hangTime = 0.2f;
-    [SerializeField] private float hangGravityMultiplier = 0.5f;
+    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float lowJumpMultiplier = 2f;
 
     private Rigidbody2D body;
     private int remainingJumps;
     private const int maxJumps = 2;
     private bool isGrounded;
-    private float hangTimeCounter;
-    private float initialGravityScale;
+    private bool wasGrounded;
 
-    private Transform groundCheck;
-    private LayerMask groundLayer;
+    [SerializeField] private Transform groundChecksParent;
+    [SerializeField] private LayerMask groundLayer;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         remainingJumps = maxJumps;
-        initialGravityScale = body.gravityScale;
 
-        // Get the GroundCheck transform
-        groundCheck = transform.Find("GroundCheck");
-        if (groundCheck == null)
+        if (groundChecksParent == null)
         {
-            Debug.LogError("GroundCheck not found! Please create a child object named 'GroundCheck' at the character's feet.");
+            Debug.LogError("GroundChecks parent not assigned! Please assign the parent object containing the ground check points.");
         }
-
-        // Set the ground layer
-        groundLayer = LayerMask.GetMask("Ground");
     }
 
     private void Update()
@@ -41,46 +34,63 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
-        // Check if grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // Check if grounded on any side
+        wasGrounded = isGrounded;
+        isGrounded = IsGroundedOnAnySide();
 
-        // Reset jumps when grounded
-        if (isGrounded && body.linearVelocity.y <= 0)
+        // Reset jumps when landing
+        if (isGrounded && !wasGrounded)
         {
             remainingJumps = maxJumps;
-            hangTimeCounter = 0f;
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && remainingJumps > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || remainingJumps > 0))
         {
             Jump();
         }
 
-        // Hang time
-        if (!isGrounded && Mathf.Abs(body.linearVelocity.y) < 0.1f)
+        // Better jump physics
+        if (body.linearVelocity.y < 0)
         {
-            hangTimeCounter += Time.deltaTime;
-            if (hangTimeCounter <= hangTime)
+            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (body.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        {
+            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+
+        // Debug output
+        Debug.Log($"Is Grounded: {isGrounded}, Remaining Jumps: {remainingJumps}");
+    }
+
+    private bool IsGroundedOnAnySide()
+    {
+        foreach (Transform checkPoint in groundChecksParent)
+        {
+            if (Physics2D.OverlapCircle(checkPoint.position, groundCheckRadius, groundLayer))
             {
-                body.gravityScale = initialGravityScale * hangGravityMultiplier;
-            }
-            else
-            {
-                body.gravityScale = initialGravityScale;
+                return true;
             }
         }
-        else
-        {
-            body.gravityScale = initialGravityScale;
-            hangTimeCounter = 0f;
-        }
+        return false;
     }
 
     private void Jump()
     {
         body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
         remainingJumps--;
-        hangTimeCounter = 0f;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (groundChecksParent != null)
+        {
+            Gizmos.color = Color.red;
+            foreach (Transform checkPoint in groundChecksParent)
+            {
+                Gizmos.DrawWireSphere(checkPoint.position, groundCheckRadius);
+            }
+        }
     }
 }

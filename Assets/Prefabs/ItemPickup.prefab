@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5956536735095714898}
   - component: {fileID: 8875210650223932021}
   - component: {fileID: 6709573794244791620}
+  - component: {fileID: 6333242599632797217}
   m_Layer: 0
   m_Name: ItemPickup
   m_TagString: Untagged
@@ -148,3 +149,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+--- !u!114 &6333242599632797217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337390819160793166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77874481b6af1d4fac79b77997b87f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyName: DoorKey
+  damage: 50000
