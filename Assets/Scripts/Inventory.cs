@@ -1,10 +1,9 @@
-// Inventory.cs
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    public int inventorySize = 20;
+    public int inventorySize = 9;
     public List<ItemSlot> items = new List<ItemSlot>();
 
     private void Start()
@@ -15,47 +14,52 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool AddItem(Item item, int amount = 1)
+    public bool AddItem(Item item)
     {
-        if (item.isStackable)
+        for (int i = 0; i < items.Count; i++)
         {
-            ItemSlot existingSlot = items.Find(slot => slot.item == item && slot.amount < item.maxStackSize);
-            if (existingSlot != null)
+            if (items[i].item == null)
             {
-                existingSlot.amount += amount;
+                items[i].item = item;
+                items[i].amount = 1;
                 return true;
             }
         }
-
-        ItemSlot emptySlot = items.Find(slot => slot.item == null);
-        if (emptySlot != null)
-        {
-            emptySlot.item = item;
-            emptySlot.amount = amount;
-            return true;
-        }
-
         return false;
     }
 
-    public void RemoveItem(Item item, int amount = 1)
+    public Item GetItem(int slot)
     {
-        ItemSlot slot = items.Find(s => s.item == item);
-        if (slot != null)
+        if (slot >= 0 && slot < items.Count)
         {
-            slot.amount -= amount;
-            if (slot.amount <= 0)
+            return items[slot].item;
+        }
+        return null;
+    }
+
+    public void RemoveItem(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].item == item)
             {
-                slot.item = null;
-                slot.amount = 0;
+                items[i].item = null;
+                items[i].amount = 0;
+                break;
             }
         }
     }
-}
 
-[System.Serializable]
-public class ItemSlot
-{
-    public Item item;
-    public int amount;
+    [System.Serializable]
+    public class ItemSlot
+    {
+        public Item item;
+        public int amount;
+
+        public ItemSlot()
+        {
+            item = null;
+            amount = 0;
+        }
+    }
 }
