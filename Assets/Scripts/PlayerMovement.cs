@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float groundCheckRadius = 0.1f;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashCooldown = 1f;
     [SerializeField] private float apexTimeThreshold = 0.1f;
     [SerializeField] private float apexJumpBoost = 2f;
+
 
     private Rigidbody2D body;
     private int remainingJumps;
