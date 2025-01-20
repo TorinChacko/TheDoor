@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float jumpForce = 30f;
-    [SerializeField] private float groundCheckRadius = 0.1f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 15f;
+    [SerializeField] private float groundCheckRadius = 0.2f;
 
     private Rigidbody2D body;
     private int remainingJumps;
