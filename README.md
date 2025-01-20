@@ -1,5 +1,5 @@
 
-<h1 align="center"> --NAME??? The DOOR-- </h1>
+<h1 align="center"> --The DOOR-- </h1>
 <h3 align="center"> Can you open the Door? </h3>
 <h5 align="center"> Reverse Game Jam | <a href="https://acm.cs.ucla.edu/committees#studio">ACM STUDIO @ UCLA</a> (Winter 2025) </h5>
 
@@ -68,4 +68,6 @@
 <h2 id="credits"> :scroll: Credits</h2>
 
 Group 4 : ACM Game Jam
-Names: Torin Chacko, Karen Troung et al.
+Credits: 
+    Programming: Torin Chacko
+    Art : Karen T.
