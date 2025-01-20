@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyName: DoorKey
-  damage: 50000
+  damage: 1
 --- !u!50 &-2106236864099002144
 Rigidbody2D:
   serializedVersion: 5
