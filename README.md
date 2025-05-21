@@ -1,6 +1,7 @@
 
 <h1 align="center"> --The DOOR-- </h1>
 <h3 align="center"> Can you open the Door? </h3>
+<a href="https://torinchacko1.itch.io/ducksanddoors">GAME LINK</a>
 <h5 align="center"> Reverse Game Jam | <a href="https://acm.cs.ucla.edu/committees#studio">ACM STUDIO @ UCLA</a> (Winter 2025) </h5>
 
 <!-- TABLE OF CONTENTS -->
